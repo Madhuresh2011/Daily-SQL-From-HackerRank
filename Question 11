@@ -1,0 +1,98 @@
+10 Question:
+
+
+How to read TOP 5 records from a table using a SQL query?
+
+Solution:
+
+
+
+1.For SQL Server, MS Access:
+
+SELECT TOP 5 * FROM table_name;
+
+2.For MySQL, PostgreSQL, and SQLite:
+
+SELECT * FROM table_name
+LIMIT 5;
+
+3.For Oracle (Before 12c):
+
+SELECT * FROM table_name
+WHERE ROWNUM <= 5;
+
+4.For Oracle (12c and later):
+
+SELECT * FROM table_name
+FETCH FIRST 5 ROWS ONLY;
+
+
+5.To Get Top 5 Based on a Column (e.g., Highest Salary)
+
+SELECT * FROM table_name
+ORDER BY column_name DESC
+LIMIT 5; -- Use `TOP 5` instead of `LIMIT 5` for SQL Server
+
+
+
+How to read LAST 5 records from a table using a SQL query?
+
+
+
+To retrieve the last 5 records from a table in SQL, you typically need to use ORDER BY along with LIMIT, FETCH, or TOP, depending on the database.
+
+1. MySQL, PostgreSQL, SQLite
+
+
+SELECT * FROM table_name
+ORDER BY column_name DESC
+LIMIT 5;
+
+Replace column_name with a column that defines the order (e.g., id or created_at).
+This retrieves the latest 5 records, but in descending order.
+If you want them in the original order, wrap it in a subquery:
+
+SELECT * FROM (
+    SELECT * FROM table_name
+    ORDER BY column_name DESC
+    LIMIT 5
+) AS subquery
+ORDER BY column_name ASC;
+
+
+2. SQL Server
+
+SELECT TOP 5 * FROM table_name
+ORDER BY column_name DESC;
+
+
+If you need to maintain the original order:
+
+SELECT * FROM (
+    SELECT TOP 5 * FROM table_name
+    ORDER BY column_name DESC
+) AS subquery
+ORDER BY column_name ASC;
+
+
+3. Oracle (Before 12c)
+
+SELECT * FROM (
+    SELECT * FROM table_name
+    ORDER BY column_name DESC
+)
+WHERE ROWNUM <= 5;
+
+
+4. Oracle (12c and later)
+
+SELECT * FROM table_name
+ORDER BY column_name DESC
+FETCH FIRST 5 ROWS ONLY;
+
+
+
+MADHURESH RAJ
+
+
+
