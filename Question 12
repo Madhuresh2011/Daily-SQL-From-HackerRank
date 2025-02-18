@@ -1,0 +1,19 @@
+12.Question:
+
+
+Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION.
+
+
+Solution:
+
+
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY LIKE 'A%'
+   OR CITY LIKE 'E%'
+   OR CITY LIKE 'I%'
+   OR CITY LIKE '0%'
+   OR CITY LIKE 'U%';
+
+
+
+MADHURESH RAJ
