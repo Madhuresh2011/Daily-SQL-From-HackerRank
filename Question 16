@@ -1,0 +1,62 @@
+16. Question:
+
+How to find the employee with third MAX Salary using a SQL query without using Analytic Functions?
+
+
+solution:
+
+Method 1: Using a Correlated Subquery
+This method works across most databases, including MySQL, SQL Server, and PostgreSQL.
+
+sql
+Copy
+Edit
+SELECT e1.*
+FROM employees e1
+WHERE 2 = (
+    SELECT COUNT(DISTINCT e2.salary)
+    FROM employees e2
+    WHERE e2.salary > e1.salary
+);
+
+
+
+
+Method 2: Using LIMIT & OFFSET (MySQL, PostgreSQL)
+If your database supports LIMIT and OFFSET, this approach is simpler:
+
+sql
+Copy
+Edit
+SELECT * 
+FROM employees 
+ORDER BY salary DESC 
+LIMIT 1 OFFSET 2;
+
+
+
+
+Method 3: Using Nested Subquery (SQL Server)
+For SQL Server (which doesn’t support LIMIT OFFSET directly), you can use TOP with a subquery:
+
+sql
+Copy
+Edit
+SELECT TOP 1 salary 
+FROM (
+    SELECT DISTINCT TOP 3 salary 
+    FROM employees 
+    ORDER BY salary DESC
+) AS subquery
+ORDER BY salary ASC;
+
+
+
+
+MADHURESH RAJ
+
+
+
+
+
+
