@@ -1,0 +1,43 @@
+17.Question:
+
+
+How to find the employee with second max salary using a SQL query?
+
+
+
+Solution:
+
+1.
+SELECT MAX(salary)AS salary FROM employees WHERE salary < (SELECT MAX(salary)AS salary FROM employees);
+
+                                   OR
+
+2. 
+SELECT MAX(salary)AS salary FROM employees WHERE salary NOT IN (SELECT MAX(salary)AS salary FROM employees);
+
+                                   OR
+
+3.
+WITH
+TEMP AS(
+     SELECT MAX(salary)AS salary FROM employee
+     WHERE salary NOT IN (SELECT MAX(salary)AS salary FROM employee)
+     )
+
+SELECT a. *FROM employee a JOIN TEMP 
+       b on a.salary=b.salary;
+
+
+
+
+MADHURESH RAJ
+
+
+
+
+
+
+
+
+
+
