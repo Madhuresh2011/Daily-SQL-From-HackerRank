@@ -1,0 +1,63 @@
+28. Question:-
+
+Use SQL querying to answer given business questions. Provide queries to business questions and deliver insights.
+
+1. What industries are Gen-Z most interested in pursuing careers in?
+
+SELECT industry, SUM(interest_count) AS total_interest
+FROM career_interests
+WHERE age_group = 'Gen Z'
+GROUP BY industry
+ORDER BY total_interest DESC;
+
+2. What are the top factors influencing Gen-Z’s career choices?
+
+SELECT 
+Influencing_Factors,
+COUNT(*) AS influence_count
+FROM dataset
+WHERE country = 'India'
+GROUP BY Influencing_Factors
+ORDER BY influence_count DESC;
+
+
+3. What is the desired work environment for Gen-Z? (e.g., remote, hybrid, in-office)
+
+SELECT 
+work_in_environment,
+COUNT(*) AS respondent_count
+FROM dataset where work_in_environment = 'remote’ and 
+work_in_environment = ‘hybrid‘ and work_in_environment = ‘in-Office'
+GROUP BY work_in_environment
+ORDER BY work_in_environment ASC;
+
+4. How do financial goals, such as salary and benefits, impact career aspirations among Gen-Z?
+
+SELECT factor, AVG(importance_score) AS avg_importance
+FROM career_preferences
+WHERE age_group = 'Gen Z'
+GROUP BY factor
+ORDER BY avg_importance DESC;
+
+5. What role do personal values and social impact play in career choices for Gen-Z?
+
+SELECT factor, AVG(importance_score) AS avg_importance
+FROM career_factors
+WHERE age_group = 'Gen Z'
+AND factor IN ('Social Impact', 'Diversity & Inclusion', 'Sustainability', 'Ethical Practices')
+GROUP BY factor
+ORDER BY avg_importance DESC;
+
+
+
+
+
+
+
+
+
+MADHURESH RAJ
+
+
+
+
